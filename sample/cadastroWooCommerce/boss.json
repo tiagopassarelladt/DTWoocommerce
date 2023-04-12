@@ -1,0 +1,11 @@
+{
+	"name": "cadastroWooCommerce",
+	"description": "",
+	"version": "1.0.0",
+	"homepage": "",
+	"mainsrc": "./",
+	"projects": [],
+	"dependencies": {
+		"https://github.com/alepmedeiros/woocommerce4d": "^1.0.5"
+	}
+}

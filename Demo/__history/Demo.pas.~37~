@@ -1,0 +1,101 @@
+unit Demo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Woocommerce, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Datasnap.DBClient, Vcl.StdCtrls, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
+
+type
+  TForm2 = class(TForm)
+    Woocommerce1: TWoocommerce;
+    DBGrid1: TDBGrid;
+    DataSource1: TDataSource;
+    Button1: TButton;
+    ClientDataSet1: TClientDataSet;
+    ClientDataSet1ID: TIntegerField;
+    ClientDataSet1NAME: TStringField;
+    ClientDataSet1PARENT: TStringField;
+    Button2: TButton;
+    Memo1: TMemo;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.Button1Click(Sender: TObject);
+VAR
+i:Integer;
+begin
+          if ClientDataSet1.Active then
+          begin
+            ClientDataSet1.EmptyDataSet;
+          END ELSE begin
+            ClientDataSet1.CreateDataSet;
+          end;
+
+          Woocommerce1.Url            := 'http://dtloja.com.br/woo/';
+          Woocommerce1.ConsumerKey    := 'ck_322768b4c3f39f21efb826e844b91c3be8a1d5ea';
+          Woocommerce1.ConsumerSecret := 'cs_225a700cf1c239fa782938bce7e5be313feb8fc2';
+
+          Woocommerce1.ListarCategorias;
+
+          for I := 0 to Pred(Woocommerce1.categorias.Count) do
+         begin
+               ClientDataSet1.Append;
+               ClientDataSet1ID.AsInteger    := Woocommerce1.Categorias[I].id;
+               ClientDataSet1NAME.AsString   := Woocommerce1.Categorias[I].Name;
+               ClientDataSet1PARENT.AsString := Woocommerce1.Categorias[I].Parent;
+               ClientDataSet1.Post;
+         end;
+end;
+
+procedure TForm2.Button2Click(Sender: TObject);
+var
+I:Integer;
+begin
+       Woocommerce1.Url            := 'http://dtloja.com.br/woo/';
+       Woocommerce1.ConsumerKey    := 'ck_322768b4c3f39f21efb826e844b91c3be8a1d5ea';
+       Woocommerce1.ConsumerSecret := 'cs_225a700cf1c239fa782938bce7e5be313feb8fc2';
+
+       Woocommerce1.ListarPedidos;
+
+       Memo1.Lines.Clear;
+       for I := 0 to Pred(Woocommerce1.Pedidos.Count) do
+         begin
+               Memo1.Lines.Add('Id: '         + IntToStr(Woocommerce1.Pedidos[i].Id));
+               Memo1.Lines.Add('Pedido: '     + IntToStr(Woocommerce1.Pedidos[i].Pedido));
+               Memo1.Lines.Add('Data: '       + DateToStr(Woocommerce1.Pedidos[i].Data));
+               Memo1.Lines.Add('Valor: '      + FormatFloat('#,##0.00', Woocommerce1.Pedidos[i].Total));
+               Memo1.Lines.Add('Nome: '       + (Woocommerce1.Pedidos[i].Nome));
+               Memo1.Lines.Add('Endereco: '   + (Woocommerce1.Pedidos[i].Endereco));
+               Memo1.Lines.Add('Numero: '     + (Woocommerce1.Pedidos[i].Numero));
+               Memo1.Lines.Add('Cidade: '     + (Woocommerce1.Pedidos[i].Cidade));
+               Memo1.Lines.Add('UF: '         + (Woocommerce1.Pedidos[i].UF));
+               Memo1.Lines.Add('Cep: '        + (Woocommerce1.Pedidos[i].Cep));
+               Memo1.Lines.Add('Email: '      + (Woocommerce1.Pedidos[i].Email));
+               Memo1.Lines.Add('Telefone: '   + (Woocommerce1.Pedidos[i].Telefone));
+               Memo1.Lines.Add('Codigo: '     + (Woocommerce1.Pedidos[i].Codigo));
+               Memo1.Lines.Add('Descricao: '  + (Woocommerce1.Pedidos[i].Descricao));
+               Memo1.Lines.Add('Quantidade: ' + FormatFloat('#,##0.00',Woocommerce1.Pedidos[i].Quantidade));
+               Memo1.Lines.Add('Valor: '      + FormatFloat('#,##0.00',Woocommerce1.Pedidos[i].Valor));
+               Memo1.Lines.Add('TotalItem: '  + FormatFloat('#,##0.00',Woocommerce1.Pedidos[i].TotalItem));
+               Memo1.Lines.Add('Observacoes: '+ (Woocommerce1.Pedidos[i].Observacoes));
+         end;
+end;
+
+end.

@@ -1,0 +1,81 @@
+package WooCommerce4D;
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  bindengine,
+  dbrtl,
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon,
+  bindcomp,
+  RESTComponents;
+
+contains
+  WooCommerce4D.Interfaces in 'src\WooCommerce4D.Interfaces.pas',
+  WooCommerce4D in 'src\WooCommerce4D.pas',
+  WooCommerce4D.Types in 'src\utils\WooCommerce4D.Types.pas',
+  WooCommerce4D.OAuth.Interfaces in 'src\oauth\WooCommerce4D.OAuth.Interfaces.pas',
+  WooCommerce4D.OAuth.OAuthConfig in 'src\oauth\WooCommerce4D.OAuth.OAuthConfig.pas',
+  WooCommerce4D.Model.Entitys in 'src\model\WooCommerce4D.Model.Entitys.pas',
+  WooCommerce4D.Model.DTO.Attributes in 'src\model\dto\WooCommerce4D.Model.DTO.Attributes.pas',
+  WooCommerce4D.Model.DTO.Billing in 'src\model\dto\WooCommerce4D.Model.DTO.Billing.pas',
+  WooCommerce4D.Model.DTO.Categories in 'src\model\dto\WooCommerce4D.Model.DTO.Categories.pas',
+  WooCommerce4D.Model.DTO.Coupons in 'src\model\dto\WooCommerce4D.Model.DTO.Coupons.pas',
+  WooCommerce4D.Model.DTO.CouponsLines in 'src\model\dto\WooCommerce4D.Model.DTO.CouponsLines.pas',
+  WooCommerce4D.Model.DTO.Customer in 'src\model\dto\WooCommerce4D.Model.DTO.Customer.pas',
+  WooCommerce4D.Model.DTO.DefaultAttributes in 'src\model\dto\WooCommerce4D.Model.DTO.DefaultAttributes.pas',
+  WooCommerce4D.Model.DTO.Dimensions in 'src\model\dto\WooCommerce4D.Model.DTO.Dimensions.pas',
+  WooCommerce4D.Model.DTO.Downloads in 'src\model\dto\WooCommerce4D.Model.DTO.Downloads.pas',
+  WooCommerce4D.Model.DTO.FreeLines in 'src\model\dto\WooCommerce4D.Model.DTO.FreeLines.pas',
+  WooCommerce4D.Model.DTO.Images in 'src\model\dto\WooCommerce4D.Model.DTO.Images.pas',
+  WooCommerce4D.Model.DTO.Interfaces in 'src\model\dto\WooCommerce4D.Model.DTO.Interfaces.pas',
+  WooCommerce4D.Model.DTO.LinesItems in 'src\model\dto\WooCommerce4D.Model.DTO.LinesItems.pas',
+  WooCommerce4D.Model.DTO.MetaData in 'src\model\dto\WooCommerce4D.Model.DTO.MetaData.pas',
+  WooCommerce4D.Model.DTO.Orders in 'src\model\dto\WooCommerce4D.Model.DTO.Orders.pas',
+  WooCommerce4D.Model.DTO.OrdersNotes in 'src\model\dto\WooCommerce4D.Model.DTO.OrdersNotes.pas',
+  WooCommerce4D.Model.DTO.ProductAttributesTerms in 'src\model\dto\WooCommerce4D.Model.DTO.ProductAttributesTerms.pas',
+  WooCommerce4D.Model.DTO.ProductCategories in 'src\model\dto\WooCommerce4D.Model.DTO.ProductCategories.pas',
+  WooCommerce4D.Model.DTO.ProductReviews in 'src\model\dto\WooCommerce4D.Model.DTO.ProductReviews.pas',
+  WooCommerce4D.Model.DTO.Products in 'src\model\dto\WooCommerce4D.Model.DTO.Products.pas',
+  WooCommerce4D.Model.DTO.ProductsAttributes in 'src\model\dto\WooCommerce4D.Model.DTO.ProductsAttributes.pas',
+  WooCommerce4D.Model.DTO.ProductShippingClasses in 'src\model\dto\WooCommerce4D.Model.DTO.ProductShippingClasses.pas',
+  WooCommerce4D.Model.DTO.ProductTags in 'src\model\dto\WooCommerce4D.Model.DTO.ProductTags.pas',
+  WooCommerce4D.Model.DTO.ProductVariations in 'src\model\dto\WooCommerce4D.Model.DTO.ProductVariations.pas',
+  WooCommerce4D.Model.DTO.Refunds in 'src\model\dto\WooCommerce4D.Model.DTO.Refunds.pas',
+  WooCommerce4D.Model.DTO.Shipping in 'src\model\dto\WooCommerce4D.Model.DTO.Shipping.pas',
+  WooCommerce4D.Model.DTO.ShippingLines in 'src\model\dto\WooCommerce4D.Model.DTO.ShippingLines.pas',
+  WooCommerce4D.Model.DTO.Tags in 'src\model\dto\WooCommerce4D.Model.DTO.Tags.pas',
+  WooCommerce4D.Model.DTO.TaxClasses in 'src\model\dto\WooCommerce4D.Model.DTO.TaxClasses.pas',
+  WooCommerce4D.Model.DTO.TaxRates in 'src\model\dto\WooCommerce4D.Model.DTO.TaxRates.pas',
+  WooCommerce4D.Model.DTO.WebHooks in 'src\model\dto\WooCommerce4D.Model.DTO.WebHooks.pas',
+  WooCommerce4D.HttpClient.Interfaces in 'src\httpClient\WooCommerce4D.HttpClient.Interfaces.pas',
+  WooCommerce4D.HttpClient.RestHttpClient in 'src\httpClient\WooCommerce4D.HttpClient.RestHttpClient.pas',
+  WooCommerce4D.HttpClient.WooCommerceAPI in 'src\httpClient\WooCommerce4D.HttpClient.WooCommerceAPI.pas';
+
+end.

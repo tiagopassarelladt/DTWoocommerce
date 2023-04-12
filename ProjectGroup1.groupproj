@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F1831F3D-E521-40FA-9C94-1EA789401B7A}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="WooCommerce4D.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="sample\cadastroWooCommerce\ExemploCadastroWooCommercer.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="WooCommerce4D">
+        <MSBuild Projects="WooCommerce4D.dproj"/>
+    </Target>
+    <Target Name="WooCommerce4D:Clean">
+        <MSBuild Projects="WooCommerce4D.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WooCommerce4D:Make">
+        <MSBuild Projects="WooCommerce4D.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ExemploCadastroWooCommercer">
+        <MSBuild Projects="sample\cadastroWooCommerce\ExemploCadastroWooCommercer.dproj"/>
+    </Target>
+    <Target Name="ExemploCadastroWooCommercer:Clean">
+        <MSBuild Projects="sample\cadastroWooCommerce\ExemploCadastroWooCommercer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ExemploCadastroWooCommercer:Make">
+        <MSBuild Projects="sample\cadastroWooCommerce\ExemploCadastroWooCommercer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="WooCommerce4D;ExemploCadastroWooCommercer"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="WooCommerce4D:Clean;ExemploCadastroWooCommercer:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="WooCommerce4D:Make;ExemploCadastroWooCommercer:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
